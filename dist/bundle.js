@@ -28,6 +28,7 @@ var initApp = function () {
             : 1;
         var newItem = new ListItem_1.default(itemID.toString(), newEntryText);
         fullList.addItem(newItem);
+        input.value = '';
         template.render(fullList);
     });
     var clearItems = document.getElementById('clearItemsButton');
