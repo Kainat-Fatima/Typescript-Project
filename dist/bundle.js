@@ -649,6 +649,7 @@ var FullList = /** @class */ (function () {
             var newListItem = new ListItem_1.default(itemObj._id, itemObj._item, itemObj._checked);
             FullList.instance.addItem(newListItem);
         });
+        this.sortList();
     };
     FullList.prototype.save = function () {
         localStorage.setItem("MyList", JSON.stringify(this._list));
@@ -659,11 +660,15 @@ var FullList = /** @class */ (function () {
     };
     FullList.prototype.addItem = function (itemObj) {
         this._list.push(itemObj);
+        this.sortList();
         this.save();
     };
     FullList.prototype.removeItem = function (id) {
         this._list = this._list.filter(function (item) { return item.id !== id; });
         this.save();
+    };
+    FullList.prototype.sortList = function () {
+        this._list.sort(function (a, b) { return Number(a.checked) - Number(b.checked); });
     };
     FullList.instance = new FullList();
     return FullList;
